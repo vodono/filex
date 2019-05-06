@@ -64,7 +64,7 @@ def register():
     elif Users.query.filter_by(login=user).first():
         flash(f"User {user} is already registered!")
     else:
-        db.session.add(user, password)
+        db.session.add(Users(user, password))
         db.session.commit()
         flash(f"User {user} was registered!")
 
