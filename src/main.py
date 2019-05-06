@@ -3,8 +3,8 @@ from flask import Flask
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from flask import flash, render_template, request, session, redirect, url_for
 
-from models import db
-from config import DevelopmentConfig, ProductionConfig, StagingConfig, TestingConfig
+from src.models import db
+from src.config import DevelopmentConfig, ProductionConfig, StagingConfig, TestingConfig
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
@@ -19,7 +19,7 @@ login_manager.login_view = 'login'
 
 db.init_app(app)
 
-from models import Users
+from src.models import Users
 
 
 
