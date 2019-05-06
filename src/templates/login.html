@@ -1,0 +1,22 @@
+{% block body %}
+{% if session['logged_in'] %}
+
+You're logged in already!
+
+{% else %}
+<form method="POST" action="/login/">
+    <input type="username" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Log in">
+</form>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+      <table bordercolor="#000000" rules="all" border>
+        <caption><h1>List of transactions</h1></caption>
+        <tr>
+          <th>Transaction id</th>
+          <th>Order's date</th>
+          <th>Order's time</th>
+          <th>Amount paid</th>
+          <th>Currency</th>
+          <th>Status</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order['id'] }}</td>
+          <td>{{ order['created_at'].date() }}</td>
+          <td>{{ order['created_at'].time() }}</td>
+          <td>{{ order['pay_amount'] }}</td>
+          <td>{{ order['pay_currency'] }}</td>
+          <td>{{ order['status'] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+</body>
+</html>

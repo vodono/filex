@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>File exchange</title>
+    <link rel="stylesheet" href="/static/index.css" type="text/css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <div class="file_input">
+              <input type="file" multiple="multiple" accept="*">
+              <a href="#" class="upload_files_button">Upload Files</a>
+              <div class="ajax-reply"></div>
+          </div>
+
+          <div class="login">
+              <fieldset>
+                  <form method="POST" action="/login/">
+                        <input type="username" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Log in">
+                        <input type="submit" value="Register" formaction="/register/">
+                        <button formaction="/logout/">Log out</button>
+                  </form>
+              </fieldset>
+
+              <fieldset>
+                  {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                  <ul class=flashes>
+                    {% for message in messages %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  {% endwith %}
+              </fieldset>
+          </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+        <div class="files">
+          "Files"
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
