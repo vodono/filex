@@ -1,6 +1,8 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+os.environ['DATABASE_URL'] = 'postgresql://filex:files@localhost/files'
+
 
 class Config(object):
     DEBUG = False

@@ -2,31 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>File exchange</title>
+    <link rel="stylesheet" href="/static/index.css" type="text/css">
 </head>
 <body>
-    <div>
-      <table bordercolor="#000000" rules="all" border>
-        <caption><h1>List of transactions</h1></caption>
-        <tr>
-          <th>Transaction id</th>
-          <th>Order's date</th>
-          <th>Order's time</th>
-          <th>Amount paid</th>
-          <th>Currency</th>
-          <th>Status</th>
-        </tr>
-        {% for order in orders %}
-        <tr>
-          <td>{{ order['id'] }}</td>
-          <td>{{ order['created_at'].date() }}</td>
-          <td>{{ order['created_at'].time() }}</td>
-          <td>{{ order['pay_amount'] }}</td>
-          <td>{{ order['pay_currency'] }}</td>
-          <td>{{ order['status'] }}</td>
-        </tr>
-        {% endfor %}
-      </table>
+    <div class="header">
+        <a href="/">Home</a>
+        <h1>Files information</h1>
     </div>
-</body>
-</html>
+
+    <div class="main">
+        <div class="container">
+            <div class="file">
+                <table border width="100%">
+                    <tr>
+                        <th>File_id</th>
+                        <th>Filename</th>
+                        <th>Expire at</th>
+                        <th>Time remained</th>
+                        <th>Download</th>
+                    </tr>
+                    {% for file in files_list %}
+                    <tr>
+                        <td>{{ file.file_id }}</td>
+                        <td>{{ file.filename }}</td>
+                        <td>{{ file.expire_at }}</td>
+                        <td>{{ file.time_remained }}</td>
+                        <td> <a href={{ file.file_ref }}> Download file </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!--    <div>-->
+<!--      <table bordercolor="#000000" rules="all" border>-->
+<!--        <caption><h1>List of transactions</h1></caption>-->
+<!--        <tr>-->
+<!--          <th>Transaction id</th>-->
+<!--          <th>Order's date</th>-->
+<!--          <th>Order's time</th>-->
+<!--          <th>Amount paid</th>-->
+<!--          <th>Currency</th>-->
+<!--          <th>Status</th>-->
+<!--        </tr>-->
+<!--        {% for order in orders %}-->
+<!--        <tr>-->
+<!--          <td>{{ order['id'] }}</td>-->
+<!--          <td>{{ order['created_at'].date() }}</td>-->
+<!--          <td>{{ order['created_at'].time() }}</td>-->
+<!--          <td>{{ order['pay_amount'] }}</td>-->
+<!--          <td>{{ order['pay_currency'] }}</td>-->
+<!--          <td>{{ order['status'] }}</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+<!--      </table>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->

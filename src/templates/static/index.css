@@ -14,6 +14,7 @@
 .file_input {
   float: left;
   width: 50%;
+  height: 200px;
   margin: 0;
   background-color: green;
 }
@@ -21,14 +22,27 @@
 .login {
   float: right;
   width: 50%;
+  height: 200px;
   margin: 0;
   background-color: red;
 }
 
-.files {
+.files_list {
   float: left;
-  width: 100%;
-  min-height: 300px;
-  margin: 0;
-  background-color: blue;
+  width: 40%;
+  min-height: 50px;
+  margin: 5;
+  background-color: #6ca8b5;
+}
+
+.file_info {
+  float: right;
+  width: 40%;
+  min-height: 50px;
+  margin: 5;
+  background-color: #6ca8b5;
+}
+
+#flash_messages {
+  height: 200px;
 }
