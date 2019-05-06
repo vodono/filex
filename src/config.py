@@ -1,6 +1,6 @@
-import os
+import os, sys
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+sys.path.insert(0, r'/src')
 os.environ['DATABASE_URL'] = 'postgresql://filex:files@localhost/files'
 
 
