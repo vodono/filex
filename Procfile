@@ -1,1 +1,1 @@
-web: gunicorn src.main:app
+web: env PYTHONPATH=$PYTHONPATH:$PWD/src gunicorn src.main:app
