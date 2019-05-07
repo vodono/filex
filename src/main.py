@@ -9,6 +9,7 @@ from flask_login import logout_user, login_required, current_user
 from models import db
 from config import DevelopmentConfig, ProductionConfig
 
+
 app = Flask(__name__)
 app.config.from_object(ProductionConfig)
 app.static_url_path = app.config.get('STATIC_FOLDER')
@@ -102,6 +103,12 @@ def upload():
     return jsonify(message="OK")
 
 
+def del_expired():
+    File.query.filter(
+        File.expire_at < datetime.datetime.now()
+    ).delete()
+
+
 def files_list_prepare(objs_list):
     files_list = []
 
@@ -127,6 +134,8 @@ def files_list_prepare(objs_list):
 @app.route('/files/')
 @login_required
 def files():
+    del_expired()
+
     user_files = File.query.filter_by(owner_id=current_user.id).all()
     files_list = files_list_prepare(user_files)
 
@@ -135,15 +144,22 @@ def files():
 
 @app.route('/file/', methods=['GET'])
 def file():
+    del_expired()
+
     file_id = int(request.args.get('file_id'))
     file_obj = File.query.filter_by(id=file_id).all()
     files_list = files_list_prepare(file_obj)
-
-    return render_template('files.html', files_list=files_list)
+    if len(files_list) == 0:
+        from flask import abort
+        abort(404)
+    else:
+        return render_template('files.html', files_list=files_list)
 
 
 @app.route('/download/<int:file_id>/', methods=['GET'])
 def download(file_id):
+    del_expired()
+
     file = File.query.filter_by(id=file_id).first()
 
     return send_file(
