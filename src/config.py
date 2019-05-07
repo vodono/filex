@@ -1,7 +1,10 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-os.environ['DATABASE_URL'] = 'postgresql://filex:files@localhost/files'
+selected_config = 'production'
+
+if selected_config != 'production':
+    os.environ['DATABASE_URL'] = 'postgresql://filex:files@localhost/files'
 
 
 class Config(object):
@@ -15,7 +18,6 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
 class StagingConfig(Config):
