@@ -7,10 +7,10 @@ from flask_login import LoginManager, login_user
 from flask_login import logout_user, login_required, current_user
 
 from models import db
-from config import DevelopmentConfig
+from config import DevelopmentConfig, ProductionConfig
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig)
+app.config.from_object(ProductionConfig)
 app.static_url_path = app.config.get('STATIC_FOLDER')
 app.static_folder = app.root_path+app.static_url_path
 
